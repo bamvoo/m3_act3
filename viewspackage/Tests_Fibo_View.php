@@ -36,12 +36,13 @@
                 include_once '../controllerspackage/fibo_primo_Controller.php';
 
                 $response = true;
-                print "<b>Indica seguido si 5 números son fibonacci o no<br></b>";
+                print "<b>Indica seguido si 5 números son fibonacci o no con un -si- o un -no-<br></b>";
                 //comprueba el dato del check input
                 if (filter_input(INPUT_POST, 'result') != null) {
                     //mete en una variable lo que contiene el input result
-                    $result = (string) filter_input(INPUT_POST, 'result');
-                    $response = check($result);
+                    $result_num = (int) filter_input(INPUT_POST, 'result');
+                    $result_text = (string) filter_input(INPUT_POST, 'enviar');
+                    $response = checkF($result_num,$result_text);
                 }
 
                 $challenge = challenge();
@@ -60,7 +61,7 @@
 
                 <div id="formulario">
                     <form action = "" method="POST">
-                        <input type="number" name="result" placeholder="Escriu el resultat"/>
+                        <input type="string" name="result" placeholder="Escriu el resultat"/>
                         <input type="submit" value="Comprobar" id="check_si" name="enviar"/>
                     </form>
                 </div>

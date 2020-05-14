@@ -118,7 +118,6 @@ function challenge(): string {
 function initchallenge() {
     $_SESSION['initialized'] = 1;
     $_SESSION['gamelevel'] = 1;
-    $_SESSION['oper'] = "+";
     //    $_SESSION['fibo&primo'] = 0;
     $_SESSION['attempts'] = 0;
     $_SESSION['numoperssuccess'] = 0;
@@ -126,7 +125,39 @@ function initchallenge() {
 }
 
 //si es correcto te lleva al siguiente level
-function check(int $result): bool {
+function checkP(int $result_n, string $result_t): bool {
+
+    $_SESSION['attempts'] = $_SESSION['attempts'] + 1;
+
+    if (comprobarPrimo($result_n) == true and $result_t == "si" ) {
+        $_SESSION['numoperssuccess'] = $_SESSION['numoperssuccess'] + 1;
+        if ($_SESSION['numoperssuccess'] == 3) {
+            if ($_SESSION['gamelevel'] == 4) {
+                $_SESSION['challengecompleted'] = 1;
+            } else {
+                $_SESSION['gamelevel'] = $_SESSION['gamelevel'] + 1;
+                $_SESSION['numoperssuccess'] = 0;
+            }
+        }
+        return true;
+    } elseif(comprobarPrimo($result_n) == false and $result_t == "no" ) {
+        $_SESSION['numoperssuccess'] = $_SESSION['numoperssuccess'] + 1;
+        if ($_SESSION['numoperssuccess'] == 3) {
+            if ($_SESSION['gamelevel'] == 4) {
+                $_SESSION['challengecompleted'] = 1;
+            } else {
+                $_SESSION['gamelevel'] = $_SESSION['gamelevel'] + 1;
+                $_SESSION['numoperssuccess'] = 0;
+            }
+        }
+        return true;
+    } else{
+        $_SESSION['numoperssuccess'] = 0;
+        return false;
+    }
+}
+//si es correcto te lleva al siguiente level
+function checkF(int $result): bool {
 
     $_SESSION['attempts'] = $_SESSION['attempts'] + 1;
 
@@ -137,7 +168,6 @@ function check(int $result): bool {
                 $_SESSION['challengecompleted'] = 1;
             } else {
                 $_SESSION['gamelevel'] = $_SESSION['gamelevel'] + 1;
-                oper();
                 $_SESSION['numoperssuccess'] = 0;
             }
         }
@@ -176,7 +206,6 @@ function numoperssuccess() {
 function finishchallenge() {
     unset($_SESSION['initialized']);
     unset($_SESSION['gamelevel']);
-    unset($_SESSION['oper']);
     unset($_SESSION['attempts']);
     unset($_SESSION['numoperssuccess']);
     unset($_SESSION['challengecompleted']);
