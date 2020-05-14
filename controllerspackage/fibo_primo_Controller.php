@@ -2,7 +2,7 @@
 //pasar cosas de aquí a la vista
 
 //funciones fibonacci
-function crearFibo($array_fibo):int{
+function crearFibo($array_fibo){
 
     $a = 2;
     $b = 1;
@@ -19,7 +19,7 @@ function crearFibo($array_fibo):int{
     return  $array_fibo;
 }
 
-function comprobarFibo( int $n ):boolean{
+function comprobarFibo( int $n ){
 
     $result = false;
     $array_fibo = [];
@@ -157,11 +157,23 @@ function checkP(int $result_n, string $result_t): bool {
     }
 }
 //si es correcto te lleva al siguiente level
-function checkF(int $result): bool {
+function checkF(int $result_n, string $result_t){
 
-    $_SESSION['attempts'] = $_SESSION['attempts'] + 1;
 
-    if (comprobarFibo($result) == true) {
+//    $_SESSION['attempts'] = $_SESSION['attempts'] + 1;
+
+    if (comprobarFibo($result_n) == true and $result_t == "si" ) {
+        $_SESSION['numoperssuccess'] = $_SESSION['numoperssuccess'] + 1;
+        if ($_SESSION['numoperssuccess'] == 3) {
+            if ($_SESSION['gamelevel'] == 4) {
+                $_SESSION['challengecompleted'] = 1;
+            } else {
+                $_SESSION['gamelevel'] = $_SESSION['gamelevel'] + 1;
+                $_SESSION['numoperssuccess'] = 0;
+            }
+        }
+        return true;
+    } elseif(comprobarFibo($result_n) == false and $result_t == "no" ) {
         $_SESSION['numoperssuccess'] = $_SESSION['numoperssuccess'] + 1;
         if ($_SESSION['numoperssuccess'] == 3) {
             if ($_SESSION['gamelevel'] == 4) {
