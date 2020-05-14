@@ -30,19 +30,20 @@
 
         <section id="central">
             <a name="principal"></a>
-            <br><b>CALCULATION CHALLENGE: Fibonacci i nombres prims</b><br><br>
+            <br><b>CALCULATION CHALLENGE: Fibonacci </b><br><br>
             <article>
                 <?php
                 include_once '../controllerspackage/fibo_primo_Controller.php';
 
                 $response = true;
-                print "<b>2 rondas, primero acierta el número de fibonacci y luego el número primo<br></b>";
+                print "<b>Indica seguido si 5 números son fibonacci o no<br></b>";
                 //comprueba el dato del check input
                 if (filter_input(INPUT_POST, 'result') != null) {
-                    $result = (int) filter_input(INPUT_POST, 'result');
+                    //mete en una variable lo que contiene el input result
+                    $result = (string) filter_input(INPUT_POST, 'result');
                     $response = check($result);
                 }
-                //
+
                 $challenge = challenge();
 
                 if (strpos($challenge, "CONGRATS!")===false) {
@@ -53,16 +54,14 @@
                     print "<br> Intent = " . attempts() . "<br><br>";
                     print "<b>Repte Actual: " . $challenge . "</b>";
                 } else {
-                    $random = randFibo();
-                    print "<br><b>" . $random . "</b><br>";
-
+                    print "<br><b>" . $challenge . "</b><br>";
                 }
                 ?>
 
                 <div id="formulario">
                     <form action = "" method="POST">
                         <input type="number" name="result" placeholder="Escriu el resultat"/>
-                        <input type="submit" value="CHECK" id="check" name="enviar"/>
+                        <input type="submit" value="Comprobar" id="check_si" name="enviar"/>
                     </form>
                 </div>
             </article>

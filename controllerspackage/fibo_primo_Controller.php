@@ -83,35 +83,34 @@ function challenge(): string {
     if (isset($_SESSION['initialized']) == null) {
         initchallenge();
     }
-    /*
-    $_SESSION['value1'] = rand(1, 11);
-    $_SESSION['value2'] = rand(1, 11);
-    return ($_SESSION['value1'] . " " . $_SESSION['oper'] . " " . $_SESSION['value2']);
-    */
-    if($_SESSION['fibo&primo'] = 0) {
-        $_SESSION['v0'] = rand(1, 3);
-        $_SESSION['v1'] = randFibo();
-        $_SESSION['v2'] = rand(1, 810);
-        $_SESSION['v3'] = rand(1, 810);
-        if ($_SESSION['v0'] == 1)
-            return ($_SESSION['v3'] . " - " . $_SESSION['v1'] . " - " . $_SESSION['v2']);
-        elseif ($_SESSION['v0'] == 2)
-            return ($_SESSION['v1'] . " - " . $_SESSION['v2'] . " - " . $_SESSION['v3']);
-        else
-            return ($_SESSION['v2'] . " - " . $_SESSION['v3'] . " - " . $_SESSION['v1']);
-    }
-    else{
-        $_SESSION['v0'] = rand(1, 3);
-        $_SESSION['v1'] = randPrimo();
-        $_SESSION['v2'] = rand(1, 810);
-        $_SESSION['v3'] = rand(1, 810);
-        if ($_SESSION['v0'] == 1)
-            return ($_SESSION['v3'] . " - " . $_SESSION['v1'] . " - " . $_SESSION['v2']);
-        elseif ($_SESSION['v0'] == 2)
-            return ($_SESSION['v1'] . " - " . $_SESSION['v2'] . " - " . $_SESSION['v3']);
-        else
-            return ($_SESSION['v2'] . " - " . $_SESSION['v3'] . " - " . $_SESSION['v1']);
-    }
+
+    $_SESSION['value1'] = rand(1, 1500);
+    return ($_SESSION['value1']);
+
+//    if($_SESSION['fibo&primo'] = 0) {
+//        $_SESSION['v0'] = rand(1, 3);
+//        $_SESSION['v1'] = randFibo();
+//        $_SESSION['v2'] = rand(1, 810);
+//        $_SESSION['v3'] = rand(1, 810);
+//        if ($_SESSION['v0'] == 1)
+//            return ($_SESSION['v3'] . " - " . $_SESSION['v1'] . " - " . $_SESSION['v2']);
+//        elseif ($_SESSION['v0'] == 2)
+//            return ($_SESSION['v1'] . " - " . $_SESSION['v2'] . " - " . $_SESSION['v3']);
+//        else
+//            return ($_SESSION['v2'] . " - " . $_SESSION['v3'] . " - " . $_SESSION['v1']);
+//    }
+//    else{
+//        $_SESSION['v0'] = rand(1, 3);
+//        $_SESSION['v1'] = randPrimo();
+//        $_SESSION['v2'] = rand(1, 810);
+//        $_SESSION['v3'] = rand(1, 810);
+//        if ($_SESSION['v0'] == 1)
+//            return ($_SESSION['v3'] . " - " . $_SESSION['v1'] . " - " . $_SESSION['v2']);
+//        elseif ($_SESSION['v0'] == 2)
+//            return ($_SESSION['v1'] . " - " . $_SESSION['v2'] . " - " . $_SESSION['v3']);
+//        else
+//            return ($_SESSION['v2'] . " - " . $_SESSION['v3'] . " - " . $_SESSION['v1']);
+//    }
 
 }
 /////////////////////////////////////////////////
@@ -128,8 +127,10 @@ function initchallenge() {
 
 //si es correcto te lleva al siguiente level
 function check(int $result): bool {
+
     $_SESSION['attempts'] = $_SESSION['attempts'] + 1;
-    if ($result == operation((int) $_SESSION['value1'], (int) $_SESSION['value2'], $_SESSION['oper'])) {
+
+    if (comprobarFibo($result) == true) {
         $_SESSION['numoperssuccess'] = $_SESSION['numoperssuccess'] + 1;
         if ($_SESSION['numoperssuccess'] == 3) {
             if ($_SESSION['gamelevel'] == 4) {
@@ -141,24 +142,24 @@ function check(int $result): bool {
             }
         }
         return true;
-    } else {
+    } else{
         $_SESSION['numoperssuccess'] = 0;
         return false;
     }
 }
 //cambiar entre operadores
-function oper() {
-    switch ($_SESSION['gamelevel']) {
-        case 1: $_SESSION['oper'] = "+";
-            break;
-        case 2: $_SESSION['oper'] = "-";
-            break;
-        case 3: $_SESSION['oper'] = "*";
-            break;
-        case 4 : $_SESSION['oper'] = "/";
-            break;
-    }
-}
+//function oper() {
+//    switch ($_SESSION['gamelevel']) {
+//        case 1: $_SESSION['oper'] = "+";
+//            break;
+//        case 2: $_SESSION['oper'] = "-";
+//            break;
+//        case 3: $_SESSION['oper'] = "*";
+//            break;
+//        case 4 : $_SESSION['oper'] = "/";
+//            break;
+//    }
+//}
 
 function gamelevel() {
     return $_SESSION['gamelevel'];

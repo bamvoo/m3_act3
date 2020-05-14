@@ -16,7 +16,8 @@
                         <a href="UserAccountView.php" class="optmenu">COMPTE USUARI</a>
                         <a href="MathChallengeView.php" class="optmenu">MATEMÀTIQUES</a>
                         <a href="BlankPage.php" class="optmenu">PUZZLES</a>
-                        <a href="TestsView.php" class="optmenu">TESTS</a>
+                        <a href="Tests_Fibo_View.php" class="optmenu">TEST NUM FIBOS</a>
+                        <a href="Tests_Primo_View.php" class="optmenu">TEST NUM PRIMOS</a>
                         <a href="BlankPage.php" class="optmenu">JOCS</a>
                     </div>
                 </nav>
