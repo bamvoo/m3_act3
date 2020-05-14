@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>    
+        <title> Aprenentatge per Projectes </title>
+        <meta charset="UTF-8">
+        <meta name="title" content="Portal del Modul 3">
+        <meta name="description" content="Proves d'aprenentatge">
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    </head>
+	
+    <body>
+        <header  class="title">
+            <h1> P H P. Aprenentatge per Projectes</h1>		
+        </header>
+
+        <aside id="leftside">
+            <div class="darkstyle">
+
+            </div>
+        </aside>
+
+        <aside id="rightside">
+            <div class="darkstyle">
+
+            </div>
+        </aside>
+
+        <section id="central">
+            <a name="principal"></a>
+            <h3> Per accedir al contingut has de estar autenticat </h3>
+            <article>        
+                <form action="controllerspackage/AccessController.php" method="POST">
+                    Entra nom i contrassenya si ja ets usuari, o bé dona't d'alta al portal<br>
+                    <br><label>USUARI : </label><input type="text" name="user"/>
+                    <br><label>PASSWORD: </label><input type="text" name="passwd"/><br>
+                    <br>CREAR NOU USUARI <input type="checkbox" name="register" value="register"/>
+                    <br><br><input type="submit" value="ACCEDIR" name="enviar" />
+                </form>             
+            </article>
+            
+        </section>
+
+        <footer>
+            <div class="darkstyle">
+                <a><b> Autor: Jose Meseguer</b> </a>  
+            </div>
+        </footer>
+    </body>
+</html>
