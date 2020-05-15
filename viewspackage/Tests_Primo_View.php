@@ -30,19 +30,18 @@
 
 <section id="central">
     <a name="principal"></a>
-    <br><b>CALCULATION CHALLENGE: Números primos </b><br><br>
+    <br><b>CALCULATION CHALLENGE: Números Primos </b><br><br>
     <article>
         <?php
         include_once '../controllerspackage/fibo_primo_Controller.php';
 
         $response = true;
-        print "<b>Indica seguido si 5 números son primos o no con un -si- o un -no<br></b>";
+        print "<b>Indica en 5 series si los números son primos o no con un -si- o un -no-<br></b>";
         //comprueba el dato del check input
         if (filter_input(INPUT_POST, 'result') != null) {
             //mete en una variable lo que contiene el input result
-            $result_num = (int) filter_input(INPUT_POST, 'result');
-            $result_text = (string) filter_input(INPUT_POST, 'enviar');
-            $response = checkP($result_num,$result_text);
+            $result_string = (string) filter_input(INPUT_POST, 'result');
+            $response = checkP($result_string);
         }
 
         $challenge = challenge();
@@ -70,7 +69,7 @@
 
 <footer>
     <div class="darkstyle">
-        <a><b> Autor: Marc Aguilar Conquistador de Errores</b> </a>
+        <a><b> Autor: Marc Aguilar Conquistador de Errores, Imán de Apagones</b> </a>
     </div>
 </footer>
 </body>

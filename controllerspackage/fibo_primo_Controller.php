@@ -1,4 +1,13 @@
 <?php
+
+session_start();
+
+include_once '../functions/math/BasicOperations.php';
+include_once '../adapterspackage/DBConnectionFactory.php';
+include_once 'UserDAO.php';
+include_once '../modelpackage/User.php';
+
+
 //pasar cosas de aquí a la vista
 
 //funciones fibonacci
@@ -38,21 +47,47 @@ function randFibo(){
     return $array_fibo[$random];
 }
 
-//funciones de números primos
+//////////////funciones de números primos///////////////////
 
-function crearPrimo($array_primo):int{
+function console_log( $data ){
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
+}
 
-    for($n= 0;$n < 20;$n++ ){
-        for($m = 0;$m < 20;$m++){
-            if($m % $m == 0 and $m % 1 == 0){
-                $array_primo[$n] = $m;
+
+function crearPrimo($array_primo){
+    $array_primo[0] = 1;
+    while(sizeof($array_primo) < 20)
+    {
+
+        $pushed = false;
+        for ($es_primo = $array_primo[sizeof($array_primo)-1]+1;
+             $pushed == false;
+             $es_primo++){
+
+            $flag_primo = true;
+
+            $minimo = 2;
+            while ($es_primo > $minimo and $flag_primo) {
+                if ($es_primo % $minimo == 0) {
+                    $flag_primo = false;
+                }
+                $minimo++;
+            }
+
+            if ($flag_primo) {
+                array_push($array_primo, $es_primo);
+                $pushed = true;
             }
         }
+
     }
+    console_log($array_primo);
     return $array_primo;
 }
 
-function comprobarPrimo( int $n ):boolean{
+function comprobarPrimo( int $n ){
 
     $result = false;
     $array_primo = [];
@@ -67,12 +102,81 @@ function comprobarPrimo( int $n ):boolean{
 function randPrimo(){
     $array_primo = [];
     crearFibo($array_primo);
-    $random = rand(0,19);
+    $random = rand(1,67);
     return $array_primo[$random];
 }
 
+
+
 /////////////////////////////////////////////////
-function challenge(): string {
+//si es correcto te lleva al siguiente level
+function checkP(string $result_string){
+
+    $_SESSION['attempts'] = $_SESSION['attempts'] + 1;
+
+    if (comprobarPrimo($_SESSION['value1']) == true and $result_string == "si" ) {
+        $_SESSION['numoperssuccess'] = $_SESSION['numoperssuccess'] + 1;
+        if ($_SESSION['numoperssuccess'] == 3) {
+            if ($_SESSION['gamelevel'] == 4) {
+                $_SESSION['challengecompleted'] = 1;
+            } else {
+                $_SESSION['gamelevel'] = $_SESSION['gamelevel'] + 1;
+                $_SESSION['numoperssuccess'] = 0;
+            }
+        }
+        return true;
+    } elseif(comprobarPrimo($_SESSION['value1']) == false and $result_string == "no" ) {
+        $_SESSION['numoperssuccess'] = $_SESSION['numoperssuccess'] + 1;
+        if ($_SESSION['numoperssuccess'] == 3) {
+            if ($_SESSION['gamelevel'] == 4) {
+                $_SESSION['challengecompleted'] = 1;
+            } else {
+                $_SESSION['gamelevel'] = $_SESSION['gamelevel'] + 1;
+                $_SESSION['numoperssuccess'] = 0;
+            }
+        }
+        return true;
+    } else{
+        $_SESSION['numoperssuccess'] = 0;
+        return false;
+    }
+}
+//si es correcto te lleva al siguiente level
+function checkF(string $result_string){
+
+    $_SESSION['attempts'] = $_SESSION['attempts'] + 1;
+
+    if (comprobarFibo($_SESSION['value1']) == true and $result_string == "si" ) {
+        $_SESSION['numoperssuccess'] = $_SESSION['numoperssuccess'] + 1;
+        if ($_SESSION['numoperssuccess'] == 3) {
+            if ($_SESSION['gamelevel'] == 4) {
+                $_SESSION['challengecompleted'] = 1;
+            } else {
+                $_SESSION['gamelevel'] = $_SESSION['gamelevel'] + 1;
+                $_SESSION['numoperssuccess'] = 0;
+            }
+        }
+        return true;
+    } elseif(comprobarFibo($_SESSION['value1']) == false and $result_string == "no" ) {
+        $_SESSION['numoperssuccess'] = $_SESSION['numoperssuccess'] + 1;
+        if ($_SESSION['numoperssuccess'] == 3) {
+            if ($_SESSION['gamelevel'] == 4) {
+                $_SESSION['challengecompleted'] = 1;
+            } else {
+                $_SESSION['gamelevel'] = $_SESSION['gamelevel'] + 1;
+                $_SESSION['numoperssuccess'] = 0;
+            }
+        }
+        return true;
+    } else{
+        $_SESSION['numoperssuccess'] = 0;
+        return false;
+    }
+}
+
+/////////////////////////////////////////////////
+function challenge(){
+
     //para cuando el session challenge complete es 1 es que se ha completado y hay que sacar los puntos a pasear
     if (isset($_SESSION['challengecompleted']) and $_SESSION['challengecompleted'] == 1) {
         $points = userRewards();
@@ -84,7 +188,8 @@ function challenge(): string {
         initchallenge();
     }
 
-    $_SESSION['value1'] = rand(1, 1500);
+    $_SESSION['value1'] = rand(1, 200);
+
     return ($_SESSION['value1']);
 
 //    if($_SESSION['fibo&primo'] = 0) {
@@ -113,7 +218,7 @@ function challenge(): string {
 //    }
 
 }
-/////////////////////////////////////////////////
+
 /* Hacer que pregunte 4 veces seguidas si es fibo o no un número  */
 function initchallenge() {
     $_SESSION['initialized'] = 1;
@@ -123,85 +228,6 @@ function initchallenge() {
     $_SESSION['numoperssuccess'] = 0;
     $_SESSION['challengecompleted'] = 0;
 }
-
-//si es correcto te lleva al siguiente level
-function checkP(int $result_n, string $result_t): bool {
-
-    $_SESSION['attempts'] = $_SESSION['attempts'] + 1;
-
-    if (comprobarPrimo($result_n) == true and $result_t == "si" ) {
-        $_SESSION['numoperssuccess'] = $_SESSION['numoperssuccess'] + 1;
-        if ($_SESSION['numoperssuccess'] == 3) {
-            if ($_SESSION['gamelevel'] == 4) {
-                $_SESSION['challengecompleted'] = 1;
-            } else {
-                $_SESSION['gamelevel'] = $_SESSION['gamelevel'] + 1;
-                $_SESSION['numoperssuccess'] = 0;
-            }
-        }
-        return true;
-    } elseif(comprobarPrimo($result_n) == false and $result_t == "no" ) {
-        $_SESSION['numoperssuccess'] = $_SESSION['numoperssuccess'] + 1;
-        if ($_SESSION['numoperssuccess'] == 3) {
-            if ($_SESSION['gamelevel'] == 4) {
-                $_SESSION['challengecompleted'] = 1;
-            } else {
-                $_SESSION['gamelevel'] = $_SESSION['gamelevel'] + 1;
-                $_SESSION['numoperssuccess'] = 0;
-            }
-        }
-        return true;
-    } else{
-        $_SESSION['numoperssuccess'] = 0;
-        return false;
-    }
-}
-//si es correcto te lleva al siguiente level
-function checkF(int $result_n, string $result_t){
-
-
-//    $_SESSION['attempts'] = $_SESSION['attempts'] + 1;
-
-    if (comprobarFibo($result_n) == true and $result_t == "si" ) {
-        $_SESSION['numoperssuccess'] = $_SESSION['numoperssuccess'] + 1;
-        if ($_SESSION['numoperssuccess'] == 3) {
-            if ($_SESSION['gamelevel'] == 4) {
-                $_SESSION['challengecompleted'] = 1;
-            } else {
-                $_SESSION['gamelevel'] = $_SESSION['gamelevel'] + 1;
-                $_SESSION['numoperssuccess'] = 0;
-            }
-        }
-        return true;
-    } elseif(comprobarFibo($result_n) == false and $result_t == "no" ) {
-        $_SESSION['numoperssuccess'] = $_SESSION['numoperssuccess'] + 1;
-        if ($_SESSION['numoperssuccess'] == 3) {
-            if ($_SESSION['gamelevel'] == 4) {
-                $_SESSION['challengecompleted'] = 1;
-            } else {
-                $_SESSION['gamelevel'] = $_SESSION['gamelevel'] + 1;
-                $_SESSION['numoperssuccess'] = 0;
-            }
-        }
-        return true;
-    } else{
-        $_SESSION['numoperssuccess'] = 0;
-        return false;
-    }
-}
-//cambiar entre operadores
-//function oper() {
-//    switch ($_SESSION['gamelevel']) {
-//        case 1: $_SESSION['oper'] = "+";
-//            break;
-//        case 2: $_SESSION['oper'] = "-";
-//            break;
-//        case 3: $_SESSION['oper'] = "*";
-//            break;
-//        case 4 : $_SESSION['oper'] = "/";
-//            break;
-//    }
-//}
 
 function gamelevel() {
     return $_SESSION['gamelevel'];

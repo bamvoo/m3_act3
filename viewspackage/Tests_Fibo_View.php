@@ -40,9 +40,8 @@
                 //comprueba el dato del check input
                 if (filter_input(INPUT_POST, 'result') != null) {
                     //mete en una variable lo que contiene el input result
-                    $result_num = (int) filter_input(INPUT_POST, 'result');
-                    $result_text = (string) filter_input(INPUT_POST, 'enviar');
-                    $response = checkF($result_num,$result_text);
+                    $result_string = (string) filter_input(INPUT_POST, 'result');
+                    $response = checkF($result_string);
                 }
 
                 $challenge = challenge();
