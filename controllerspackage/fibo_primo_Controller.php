@@ -83,7 +83,7 @@ function crearPrimo($array_primo){
         }
 
     }
-    console_log($array_primo);
+//    console_log($array_primo);
     return $array_primo;
 }
 
@@ -102,7 +102,7 @@ function comprobarPrimo( int $n ){
 function randPrimo(){
     $array_primo = [];
     crearFibo($array_primo);
-    $random = rand(1,67);
+    $random = rand(0,19);
     return $array_primo[$random];
 }
 
@@ -188,7 +188,7 @@ function challenge(){
         initchallenge();
     }
 
-    $_SESSION['value1'] = rand(1, 200);
+    $_SESSION['value1'] = rand(1, 67);
 
     return ($_SESSION['value1']);
 
