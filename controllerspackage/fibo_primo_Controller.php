@@ -7,6 +7,12 @@ include_once '../adapterspackage/DBConnectionFactory.php';
 include_once 'UserDAO.php';
 include_once '../modelpackage/User.php';
 
+function console_log( $data ){
+    echo '<script>';
+    echo 'console.log('. json_encode( $data ) .')';
+    echo '</script>';
+}
+
 
 //pasar cosas de aquí a la vista
 
@@ -49,25 +55,18 @@ function randFibo(){
 
 //////////////funciones de números primos///////////////////
 
-function console_log( $data ){
-    echo '<script>';
-    echo 'console.log('. json_encode( $data ) .')';
-    echo '</script>';
-}
 
 
-function crearPrimo($array_primo){
+function crearPrimo(&$array_primo){
+
     $array_primo[0] = 1;
     while(sizeof($array_primo) < 20)
     {
-
         $pushed = false;
         for ($es_primo = $array_primo[sizeof($array_primo)-1]+1;
              $pushed == false;
              $es_primo++){
-
             $flag_primo = true;
-
             $minimo = 2;
             while ($es_primo > $minimo and $flag_primo) {
                 if ($es_primo % $minimo == 0) {
@@ -75,26 +74,23 @@ function crearPrimo($array_primo){
                 }
                 $minimo++;
             }
-
             if ($flag_primo) {
                 array_push($array_primo, $es_primo);
                 $pushed = true;
             }
         }
-
     }
-//    console_log($array_primo);
     return $array_primo;
 }
 
 function comprobarPrimo( int $n ){
 
-    $result = false;
+    $result = 1;
     $array_primo = [];
     crearPrimo($array_primo);
     foreach ($array_primo as $pos_array){
         if($pos_array == $n)
-            return true;
+            return 2;
     }
     return $result;
 }
@@ -109,12 +105,14 @@ function randPrimo(){
 
 
 /////////////////////////////////////////////////
+
+
 //si es correcto te lleva al siguiente level
 function checkP(string $result_string){
 
     $_SESSION['attempts'] = $_SESSION['attempts'] + 1;
 
-    if (comprobarPrimo($_SESSION['value1']) == true and $result_string == "si" ) {
+    if (comprobarPrimo($_SESSION['value1']) == 2 and $result_string == "si" ) {
         $_SESSION['numoperssuccess'] = $_SESSION['numoperssuccess'] + 1;
         if ($_SESSION['numoperssuccess'] == 3) {
             if ($_SESSION['gamelevel'] == 4) {
@@ -125,7 +123,7 @@ function checkP(string $result_string){
             }
         }
         return true;
-    } elseif(comprobarPrimo($_SESSION['value1']) == false and $result_string == "no" ) {
+    } elseif(comprobarPrimo($_SESSION['value1']) == 1 and $result_string == "no" ) {
         $_SESSION['numoperssuccess'] = $_SESSION['numoperssuccess'] + 1;
         if ($_SESSION['numoperssuccess'] == 3) {
             if ($_SESSION['gamelevel'] == 4) {
