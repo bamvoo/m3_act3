@@ -17,19 +17,16 @@
                         <a href="MathChallengeView.php" class="optmenu">MATEMÀTIQUES</a>
                         <a href="BlankPage.php" class="optmenu">PUZZLES</a>
                         <?php
-                            $mysqli = new mysqli("localhost", "userdaw1", "M3phpdaw@", "demophp");
+                            include_once '../adapterspackage/DBConnectionFactory.php';
+                            include_once '../adapterspackage/MySQLAdapter.php';
 
                             $username = filter_input(INPUT_COOKIE, 'username');
-                            $user_lvl = $mysqli->query("select level from users where name = ".$username);
+                            $user_lvl = executeQuery("select level from users where name = ".$username);
 
-                            if ($mysqli->connect_errno) {
-                                printf("Falló la conexión: %s\n", $mysqli->connect_error);
-                                exit();
-                            }
-                            if ($mysqli->query("select nivell from activities where nom = fibonacci") <= $user_lvl) {
+                            if (executeQuery("select nivell from activities where nom = fibonacci") <= $user_lvl) {
                                 echo '<a href="Tests_Fibo_View.php" class="optmenu">TEST NUM FIBOS</a>';
                             }
-                            if ($mysqli->query("select nivell from activities where nom = primers") <= $user_lvl) {
+                            if (executeQuery("select nivell from activities where nom = 'primers'") <= $user_lvl) {
                                 echo '<a href="Tests_Primo_View.php" class="optmenu">TEST NUM PRIMOS</a>';
                             }
                         ?>
