@@ -34,29 +34,27 @@
             <article>
                 <?php
 
-                include_once '../controllerspackage/fibo_primo_Controller.php';
-
-                $response = true;
-                print "<b>Indica seguido si 5 números son fibonacci o no con un -si- o un -no-<br></b>";
-                //comprueba el dato del check input
-                if (filter_input(INPUT_POST, 'result') != null) {
-                    //mete en una variable lo que contiene el input result
-                    $result_string = (string) filter_input(INPUT_POST, 'result');
-                    $response = checkF($result_string);
-                }
-
-                $challenge = challenge();
-
-                if (strpos($challenge, "CONGRATS!")===false) {
-                    if ($response == false){
-                        print "<br><b>Resultat incorrecte.</b> Tornem a començar al nivell actual<br><br>";
+                    include_once '../controllerspackage/fibo_primo_Controller.php';
+                    $response = true;
+                    print "<b>Indica seguido si 5 números son fibonacci o no con un -si- o un -no-<br></b>";
+                    //comprueba el dato del check input
+                    if (filter_input(INPUT_POST, 'result') != null) {
+                        //mete en una variable lo que contiene el input result
+                        $result_string = (string) filter_input(INPUT_POST, 'result');
+                        $response = checkF($result_string);
                     }
-                    print "<br>Nivell = " . gamelevel() . "<br>Encerts Seguits = " . numoperssuccess() . " (necesites = " . (3 - numoperssuccess()) . ")";
-                    print "<br> Intent = " . attempts() . "<br><br>";
-                    print "<b>Repte Actual: " . $challenge . "</b>";
-                } else {
-                    print "<br><b>" . $challenge . "</b><br>";
-                }
+                    $challenge = challenge();
+
+                    if (strpos($challenge, "CONGRATS!")===false) {
+                        if ($response == false){
+                            print "<br><b>Resultat incorrecte.</b> Tornem a començar al nivell actual<br><br>";
+                        }
+                        print "<br>Nivell = " . gamelevel() . "<br>Encerts Seguits = " . numoperssuccess() . " (necesites = " . (3 - numoperssuccess()) . ")";
+                        print "<br> Intent = " . attempts() . "<br><br>";
+                        print "<b>Repte Actual: " . $challenge . "</b>";
+                    } else {
+                        print "<br><b>" . $challenge . "</b><br>";
+                    }
                 ?>
 
                 <div id="formulario">

@@ -53,7 +53,6 @@
                         print "<b>Repte Actual: " . $challenge . "</b>";
                     } else {
                         print "<br><b>" . $challenge . "</b><br>";
-
                     }
                 ?>
 
@@ -68,7 +67,7 @@
 
         <footer>
             <div class="darkstyle">
-                <a><b> Autor: Jose Meseguer</b> </a>  
+                <a><b> Autor: Jose Antonio</b> </a>
             </div>		
         </footer>
     </body>
