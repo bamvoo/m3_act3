@@ -253,7 +253,7 @@ function userRewards():int {
 
     setcookie('userpoints', $points, 0, '/', 'localhost');
     $level = (int)filter_input(INPUT_COOKIE, 'userlevel');
-    if ($level == 1) {
+    if ($level == 2) {
         $level++;
         setcookie('userlevel', $level, 0, '/', 'localhost');
     }

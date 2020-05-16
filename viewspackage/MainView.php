@@ -37,9 +37,9 @@
                             }
 
                         ?>
-
-
                         <a href="BlankPage.php" class="optmenu">JOCS</a>
+                        <a href="Classificacions.php" class="optmenu">CLASSIFICACIONS</a>
+
                     </div>
                 </nav>
             </section>
