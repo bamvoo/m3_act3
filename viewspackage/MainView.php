@@ -17,18 +17,43 @@
                         <a href="MathChallengeView.php" class="optmenu">MATEMÀTIQUES</a>
                         <a href="BlankPage.php" class="optmenu">PUZZLES</a>
                         <?php
-                            include_once '../adapterspackage/DBConnectionFactory.php';
-                            include_once '../adapterspackage/MySQLAdapter.php';
+                            include '../adapterspackage/MySQLAdapter.php';
+//                            include '../adapterspackage/DBConnectionFactory.php';
+                            include '../controllerspackage/LevelController.php';
+//                            include '../controllerspackage/ActivityDAO.php';
 
+
+                            $db = DBConnectionFactory::getConnection();
                             $username = filter_input(INPUT_COOKIE, 'username');
-                            $user_lvl = executeQuery("select level from users where name = ".$username);
+                            $level = filter_input(INPUT_COOKIE, 'userlevel');
 
-                            if (executeQuery("select nivell from activities where nom = fibonacci") <= $user_lvl) {
-                                echo '<a href="Tests_Fibo_View.php" class="optmenu">TEST NUM FIBOS</a>';
+                        //                                $user_lvl = executeQuery('select level from users where name = $username');
+
+                                if (lvlFibo() <= $level) {
+                                    echo '<a href="Tests_Fibo_View.php" class="optmenu">TEST NUM FIBOS</a>';
+                                }
+                                if (lvlPrimo() <= $level) {
+                                    echo '<a href="Tests_Primo_View.php" class="optmenu">TEST NUM PRIMOS</a>';
+                                }
+
+
+                        $data=[];
+
+                        tablaActivity($data);
+
+                        foreach($data as $actividades) {
+
+                            if ($_COOKIE['userlevel'] == 1 && $actividades['nivell'] == 1) {
+
+                                echo "<a href='" . $actividades['nom'] . "ChallengeView.php'>" . $actividades['nom'] . "</a>";
+
+                            } else if ($_COOKIE['userlevel'] == 2 && $actividades['nivell'] < 3) {
+                                echo "<a href='" . $actividades['nom'] . "ChallengeView.php'>" . $actividades['nom'] . "</a>";
+
+                            } else if ($_COOKIE['userlevel'] == 3 && $actividades['nivell'] < 3) {
+                                echo "<a href='" . $actividades['nom'] . "ChallengeView.php'>" . $actividades['nom'] . "</a>";
                             }
-                            if (executeQuery("select nivell from activities where nom = 'primers'") <= $user_lvl) {
-                                echo '<a href="Tests_Primo_View.php" class="optmenu">TEST NUM PRIMOS</a>';
-                            }
+                        }
                         ?>
 
 
