@@ -26,14 +26,14 @@ function lvlFibo(&$data){
     return $data;
 
 }
-function lvlPrimo(&$data){
+function lvlPrimo(&$data2){
 
     $db=DBConnectionFactory::getConnection();
 
     $activity=new QuerysClass1($db);
 
-    $activity->selectLevelPrimo($data);
+    $activity->selectLevelPrimo($data2);
 
-    return $data;
+    return $data2;
 
 }

@@ -23,13 +23,16 @@ class QuerysClass1
     public function selectLevelFibo(&$data)
     {
         $query = "select nivell from activities where nom = 'fibonacci'";
-        $this->db->executeQuery($query, $data);
+//        $this->db->executeQuery($query,
+        $this->connection->query($query);
         return $query;
     }
-    public function selectLevelPrimo(&$data)
+    public function selectLevelPrimo(&$data2)
     {
         $query = "select nivell from activities where nom = 'primers'";
-        $this->db->executeQuery($query, $data);
+//        $this->db->executeQuery($query, $data2);
+        $this->connection->query($query);
+
         return $query;
     }
 

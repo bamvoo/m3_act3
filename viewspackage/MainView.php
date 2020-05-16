@@ -18,28 +18,39 @@
                         <a href="BlankPage.php" class="optmenu">PUZZLES</a>
                         <?php
                             include '../adapterspackage/MySQLAdapter.php';
-//                            include '../adapterspackage/DBConnectionFactory.php';
                             include '../controllerspackage/LevelController.php';
 
                             $data=[];
                             $data2=[];
                             $db = DBConnectionFactory::getConnection();
+
                             $level = filter_input(INPUT_COOKIE, 'userlevel');
-//
 //                        var_dump($convert1 = lvlFibo($data['nivell']));
 //                        var_dump($level);
 //                        var_dump($convert2 = lvlPrimo($data2['nivell']));
 
-                            $convert1 = lvlFibo($data['nivell']);
+                            $convert1 = lvlFibo($data[0]);
                             $convert2 = lvlPrimo($data2['nivell']);
+                            $var1 = $convert1;
 
-                        //                                $user_lvl = executeQuery('select level from users where name = $username');
-                            if ((int)$convert1 == (int)$level) {
-                                echo '<a href="Tests_Fibo_View.php" class="optmenu">TEST NUM FIBOS</a>';
-                            }
-                            if ((int)$convert2 == (int)$level) {
-                                echo '<a href="Tests_Primo_View.php" class="optmenu">TEST NUM PRIMOS</a>';
-                            }
+//                            var_dump((int)$data['nivell']);
+//                            var_dump($var1);
+                            var_dump($convert1);
+//                            var_dump((int)$convert2);
+
+//                            if ((int)$level >= $data['nivell']) {
+//                                echo '<a href="Tests_Fibo_View.php" class="optmenu">TEST NUM FIBOS</a>';
+//                            }
+//                            if ((int)$level >= $data2['nivell']) {
+//                                echo '<a href="Tests_Primo_View.php" class="optmenu">TEST NUM PRIMOS</a>';
+//                            }
+//                            if (2 >= 1) {
+//                                echo '<a href="Tests_Fibo_View.php" class="optmenu">TEST NUM FIBOS</a>';
+//                            }
+//                            if (2 >= 3) {
+//                                echo '<a href="Tests_Primo_View.php" class="optmenu">TEST NUM PRIMOS</a>';
+//                            }
+
 //                        $data=[];
 //
 //                        tablaActivity($data);
