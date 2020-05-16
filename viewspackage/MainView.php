@@ -20,23 +20,26 @@
                             include '../adapterspackage/MySQLAdapter.php';
 //                            include '../adapterspackage/DBConnectionFactory.php';
                             include '../controllerspackage/LevelController.php';
-                            include '../controllerspackage/ActivityDAO.php';
 
-
+                            $data=[];
+                            $data2=[];
                             $db = DBConnectionFactory::getConnection();
-                            $username = filter_input(INPUT_COOKIE, 'username');
                             $level = filter_input(INPUT_COOKIE, 'userlevel');
+//
+//                        var_dump($convert1 = lvlFibo($data['nivell']));
+//                        var_dump($level);
+//                        var_dump($convert2 = lvlPrimo($data2['nivell']));
+
+                            $convert1 = lvlFibo($data['nivell']);
+                            $convert2 = lvlPrimo($data2['nivell']);
 
                         //                                $user_lvl = executeQuery('select level from users where name = $username');
-                            var_dump(selectLevelFibo());
-                            if (selectLevelFibo() <= $level) {
+                            if ((int)$convert1 == (int)$level) {
                                 echo '<a href="Tests_Fibo_View.php" class="optmenu">TEST NUM FIBOS</a>';
                             }
-                            if (selectLevelPrimo() <= $level) {
+                            if ((int)$convert2 == (int)$level) {
                                 echo '<a href="Tests_Primo_View.php" class="optmenu">TEST NUM PRIMOS</a>';
                             }
-
-
 //                        $data=[];
 //
 //                        tablaActivity($data);

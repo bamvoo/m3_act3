@@ -4,7 +4,7 @@ declare(strict_types=1);
 include_once '../adapterspackage/MySQLAdapter.php';
 include_once 'LevelController.php';
 
-class ActivityDAO
+class QuerysClass1
 {
 
     public function __construct(MySQLAdapter $db) {
@@ -20,16 +20,16 @@ class ActivityDAO
         return $data;
     }
 
-    public function selectLevelFibo()
+    public function selectLevelFibo(&$data)
     {
         $query = "select nivell from activities where nom = 'fibonacci'";
-        $this->db->executeQuery($query);
+        $this->db->executeQuery($query, $data);
         return $query;
     }
-    public function selectLevelPrimo()
+    public function selectLevelPrimo(&$data)
     {
         $query = "select nivell from activities where nom = 'primers'";
-        $this->db->executeQuery($query);
+        $this->db->executeQuery($query, $data);
         return $query;
     }
 

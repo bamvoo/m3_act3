@@ -1,6 +1,6 @@
 <?php
 
-include "ActivityDAO.php";
+include "QuerysClass.php";
 include "../adapterspackage/DBConnectionFactory.php";
 
 
@@ -8,31 +8,31 @@ function tablaActivity(&$data){
 
     $db=DBConnectionFactory::getConnection();
 
-    $activity=new ActivityDAO($db);
+    $activity=new QuerysClass1($db);
 
     $activity->selectActivities($data);
 
     return $data;
 
 }
-function lvlFibo(){
+function lvlFibo(&$data){
 
     $db=DBConnectionFactory::getConnection();
 
-    $activity=new ActivityDAO($db);
+    $activity=new QuerysClass1($db);
 
-    $data = $activity->selectLevelFibo();
+    $activity->selectLevelFibo($data);
 
     return $data;
 
 }
-function lvlPrimo(){
+function lvlPrimo(&$data){
 
     $db=DBConnectionFactory::getConnection();
 
-    $activity=new ActivityDAO($db);
+    $activity=new QuerysClass1($db);
 
-    $data = $activity->selectLevelPrimo();
+    $activity->selectLevelPrimo($data);
 
     return $data;
 
