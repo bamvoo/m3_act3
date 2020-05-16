@@ -20,7 +20,7 @@
                             include '../adapterspackage/MySQLAdapter.php';
 //                            include '../adapterspackage/DBConnectionFactory.php';
                             include '../controllerspackage/LevelController.php';
-//                            include '../controllerspackage/ActivityDAO.php';
+                            include '../controllerspackage/ActivityDAO.php';
 
 
                             $db = DBConnectionFactory::getConnection();
@@ -28,32 +28,32 @@
                             $level = filter_input(INPUT_COOKIE, 'userlevel');
 
                         //                                $user_lvl = executeQuery('select level from users where name = $username');
-
-                                if (lvlFibo() <= $level) {
-                                    echo '<a href="Tests_Fibo_View.php" class="optmenu">TEST NUM FIBOS</a>';
-                                }
-                                if (lvlPrimo() <= $level) {
-                                    echo '<a href="Tests_Primo_View.php" class="optmenu">TEST NUM PRIMOS</a>';
-                                }
-
-
-                        $data=[];
-
-                        tablaActivity($data);
-
-                        foreach($data as $actividades) {
-
-                            if ($_COOKIE['userlevel'] == 1 && $actividades['nivell'] == 1) {
-
-                                echo "<a href='" . $actividades['nom'] . "ChallengeView.php'>" . $actividades['nom'] . "</a>";
-
-                            } else if ($_COOKIE['userlevel'] == 2 && $actividades['nivell'] < 3) {
-                                echo "<a href='" . $actividades['nom'] . "ChallengeView.php'>" . $actividades['nom'] . "</a>";
-
-                            } else if ($_COOKIE['userlevel'] == 3 && $actividades['nivell'] < 3) {
-                                echo "<a href='" . $actividades['nom'] . "ChallengeView.php'>" . $actividades['nom'] . "</a>";
+                            var_dump(selectLevelFibo());
+                            if (selectLevelFibo() <= $level) {
+                                echo '<a href="Tests_Fibo_View.php" class="optmenu">TEST NUM FIBOS</a>';
                             }
-                        }
+                            if (selectLevelPrimo() <= $level) {
+                                echo '<a href="Tests_Primo_View.php" class="optmenu">TEST NUM PRIMOS</a>';
+                            }
+
+
+//                        $data=[];
+//
+//                        tablaActivity($data);
+//
+//                        foreach($data as $actividades) {
+//
+//                            if ($_COOKIE['userlevel'] == 1 && $actividades['nivell'] == 1) {
+//
+//                                echo "<a href='" . $actividades['nom'] . "ChallengeView.php'>" . $actividades['nom'] . "</a>";
+//
+//                            } else if ($_COOKIE['userlevel'] == 2 && $actividades['nivell'] < 3) {
+//                                echo "<a href='" . $actividades['nom'] . "ChallengeView.php'>" . $actividades['nom'] . "</a>";
+//
+//                            } else if ($_COOKIE['userlevel'] == 3 && $actividades['nivell'] < 3) {
+//                                echo "<a href='" . $actividades['nom'] . "ChallengeView.php'>" . $actividades['nom'] . "</a>";
+//                            }
+//                        }
                         ?>
 
 

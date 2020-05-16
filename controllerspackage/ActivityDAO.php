@@ -4,9 +4,6 @@ declare(strict_types=1);
 include_once '../adapterspackage/MySQLAdapter.php';
 include_once 'LevelController.php';
 
-
-
-
 class ActivityDAO
 {
 

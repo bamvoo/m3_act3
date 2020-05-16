@@ -15,24 +15,24 @@ function tablaActivity(&$data){
     return $data;
 
 }
-function lvlFibo(&$data){
+function lvlFibo(){
 
     $db=DBConnectionFactory::getConnection();
 
     $activity=new ActivityDAO($db);
 
-    $activity->selectLevelFibo();
+    $data = $activity->selectLevelFibo();
 
     return $data;
 
 }
-function lvlPrimo(&$data){
+function lvlPrimo(){
 
     $db=DBConnectionFactory::getConnection();
 
     $activity=new ActivityDAO($db);
 
-    $activity->selectLevelPrimo();
+    $data = $activity->selectLevelPrimo();
 
     return $data;
 
