@@ -25,49 +25,17 @@
                             $db = DBConnectionFactory::getConnection();
 
                             $level = filter_input(INPUT_COOKIE, 'userlevel');
-//                        var_dump($convert1 = lvlFibo($data['nivell']));
-//                        var_dump($level);
-//                        var_dump($convert2 = lvlPrimo($data2['nivell']));
 
-                            $convert1 = lvlFibo($data[0]);
-                            $convert2 = lvlPrimo($data2['nivell']);
-                            $var1 = $convert1;
+                            lvlFibo($data);
+                            lvlPrimo($data2);
 
-//                            var_dump((int)$data['nivell']);
-//                            var_dump($var1);
-                            var_dump($convert1);
-//                            var_dump((int)$convert2);
+                            if ((int)$level >= $data[0]['nivell']) {
+                                echo '<a href="Tests_Fibo_View.php" class="optmenu">TEST NUM FIBOS</a>';
+                            }
+                            if ((int)$level >= $data2[0]['nivell']) {
+                                echo '<a href="Tests_Primo_View.php" class="optmenu">TEST NUM PRIMOS</a>';
+                            }
 
-//                            if ((int)$level >= $data['nivell']) {
-//                                echo '<a href="Tests_Fibo_View.php" class="optmenu">TEST NUM FIBOS</a>';
-//                            }
-//                            if ((int)$level >= $data2['nivell']) {
-//                                echo '<a href="Tests_Primo_View.php" class="optmenu">TEST NUM PRIMOS</a>';
-//                            }
-//                            if (2 >= 1) {
-//                                echo '<a href="Tests_Fibo_View.php" class="optmenu">TEST NUM FIBOS</a>';
-//                            }
-//                            if (2 >= 3) {
-//                                echo '<a href="Tests_Primo_View.php" class="optmenu">TEST NUM PRIMOS</a>';
-//                            }
-
-//                        $data=[];
-//
-//                        tablaActivity($data);
-//
-//                        foreach($data as $actividades) {
-//
-//                            if ($_COOKIE['userlevel'] == 1 && $actividades['nivell'] == 1) {
-//
-//                                echo "<a href='" . $actividades['nom'] . "ChallengeView.php'>" . $actividades['nom'] . "</a>";
-//
-//                            } else if ($_COOKIE['userlevel'] == 2 && $actividades['nivell'] < 3) {
-//                                echo "<a href='" . $actividades['nom'] . "ChallengeView.php'>" . $actividades['nom'] . "</a>";
-//
-//                            } else if ($_COOKIE['userlevel'] == 3 && $actividades['nivell'] < 3) {
-//                                echo "<a href='" . $actividades['nom'] . "ChallengeView.php'>" . $actividades['nom'] . "</a>";
-//                            }
-//                        }
                         ?>
 
 
