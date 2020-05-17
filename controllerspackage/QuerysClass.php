@@ -35,8 +35,8 @@ class QuerysClass1
     }
 
     public function insertLogros(int $codi_act,int $codi_user,int $punts){
-        $query = "insert into `results`(`codi_act`, `codi_user`, `punts`) VALUES ($codi_act,$codi_user,$punts)";
-        $this->db->executeQuery($query);
+        $query = "insert into results (codi_act, codi_user, punts) VALUES ('".$codi_act."','".$codi_user."','".$punts."')";
+        $this->db->executeQuery($query, $data3);
 
         return $query;
     }
