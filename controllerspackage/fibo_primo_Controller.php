@@ -176,6 +176,7 @@ function checkF(string $result_string){
 function challenge(): string {
     //para cuando el session challenge complete es 1 es que se ha completado y hay que sacar los puntos a pasear
     if (isset($_SESSION['challengecompleted']) and $_SESSION['challengecompleted'] == 1) {
+
         $points = userRewards();
         finishchallenge();
 
@@ -183,7 +184,10 @@ function challenge(): string {
 
         $db = DBConnectionFactory::getConnection();
 
-        upScore($points);
+        $codi_user = $_COOKIE['userid'];
+        $db=DBConnectionFactory::getConnection();
+        $activity=new QuerysClass1($db);
+        $activity->insertLogros($points, $codi_user);
 
         return "CONGRATS! CHALLENGE COMPLETED!<br><br>Has aconsseguit $points punts dels 1.000 possibles";
 

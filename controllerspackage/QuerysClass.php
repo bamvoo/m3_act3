@@ -34,11 +34,10 @@ class QuerysClass1
         return $query;
     }
 
-    public function insertLogros(int $punts){
+    public function insertLogros(int $punts, int $codi_user){
 
 
         $codi_act = "select codi from activities where nom = 'primers'";
-        $codi_user = "select id from users where nom = 'primers'";
 
         $query = "insert into results (codi_act, codi_user, punts) VALUES ('".$codi_act."','".$codi_user."','".$punts."')";
         $this->db->executeQuery($query, $data3);
