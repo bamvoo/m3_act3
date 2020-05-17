@@ -6,6 +6,7 @@ include_once '../functions/math/BasicOperations.php';
 include_once '../adapterspackage/DBConnectionFactory.php';
 include_once 'UserDAO.php';
 include_once '../modelpackage/User.php';
+include "QuerysClass.php";
 
 function console_log( $data ){
     echo '<script>';
@@ -181,8 +182,6 @@ function challenge(): string {
         finishchallenge();
 
         //INSERT INTO `results`(`codi_act`, `codi_user`, `punts`) VALUES ([value-1],[value-2],[value-3])
-
-        $db = DBConnectionFactory::getConnection();
 
         $codi_user = $_COOKIE['userid'];
         $db=DBConnectionFactory::getConnection();

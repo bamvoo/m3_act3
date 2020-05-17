@@ -42,7 +42,7 @@ class QuerysClass1
         $db3 = DBConnectionFactory::getConnection();
         $query3 = "select codi from activities where nom = 'primers'";
         $db3->executeQuery($query3, $datauser3);
-        setcookie('actcodi', $datauser2[0]['codi'], 0, '/', 'localhost');
+        setcookie('actcodi', $datauser3[0]['codi'], 0, '/', 'localhost');
 
         return $query;
     }
@@ -50,7 +50,7 @@ class QuerysClass1
     public function insertLogros(int $punts, int $codi_user){
 
 
-        $codi_act = "select codi from activities where nom = 'primers'";
+        $codi_act = $_COOKIE['actcodi'];
 
         $query = "insert into results (codi_act, codi_user, punts) VALUES ('".$codi_act."','".$codi_user."','".$punts."')";
         $this->db->executeQuery($query, $data3);
