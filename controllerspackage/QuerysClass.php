@@ -24,12 +24,25 @@ class QuerysClass1
     {
         $query = "select nivell from activities where nom = 'fibonacci'";
         $this->db->executeQuery($query, $data);
+
+        $datauser2 = [];
+        $db2 = DBConnectionFactory::getConnection();
+        $query2 = "select codi from activities where nom = 'fibonacci'";
+        $db2->executeQuery($query2, $datauser2);
+        setcookie('actcodi', $datauser2[0]['codi'], 0, '/', 'localhost');
+
         return $query;
     }
     public function selectLevelPrimo(&$data2)
     {
         $query = "select nivell from activities where nom = 'primers'";
         $this->db->executeQuery($query, $data2);
+
+        $datauser3 = [];
+        $db3 = DBConnectionFactory::getConnection();
+        $query3 = "select codi from activities where nom = 'primers'";
+        $db3->executeQuery($query3, $datauser3);
+        setcookie('actcodi', $datauser2[0]['codi'], 0, '/', 'localhost');
 
         return $query;
     }
