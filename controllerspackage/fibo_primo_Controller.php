@@ -178,7 +178,12 @@ function challenge(): string {
     if (isset($_SESSION['challengecompleted']) and $_SESSION['challengecompleted'] == 1) {
         $points = userRewards();
         finishchallenge();
+
+        //INSERT INTO `results`(`codi_act`, `codi_user`, `punts`) VALUES ([value-1],[value-2],[value-3])
+
+
         return "CONGRATS! CHALLENGE COMPLETED!<br><br>Has aconsseguit $points punts dels 1.000 possibles";
+
     }
     //si no está inicializado llama a la función para inicializar
     if (isset($_SESSION['initialized']) == null) {

@@ -24,17 +24,21 @@ class QuerysClass1
     {
         $query = "select nivell from activities where nom = 'fibonacci'";
         $this->db->executeQuery($query, $data);
-//        $this->connection->query($query);
         return $query;
     }
     public function selectLevelPrimo(&$data2)
     {
         $query = "select nivell from activities where nom = 'primers'";
         $this->db->executeQuery($query, $data2);
-//        $this->connection->query($query);
 
         return $query;
     }
 
+    public function insertLogros(int $codi_act,int $codi_user,int $punts){
+        $query = "insert into `results`(`codi_act`, `codi_user`, `punts`) VALUES ($codi_act,$codi_user,$punts)";
+        $this->db->executeQuery($query);
+
+        return $query;
+    }
 
 }
