@@ -4,14 +4,14 @@ include "QuerysClass.php";
 include "../adapterspackage/DBConnectionFactory.php";
 
 
-function upScore(&$data3){
+function upScore(int $points){
 
     $db=DBConnectionFactory::getConnection();
 
     $activity=new QuerysClass1($db);
 
-    $activity->insertLogros($data3);
+    $activity->insertLogros($points);
 
-    return $data3;
+    return 0;
 
 }

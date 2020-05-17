@@ -180,9 +180,10 @@ function challenge(): string {
         finishchallenge();
 
         //INSERT INTO `results`(`codi_act`, `codi_user`, `punts`) VALUES ([value-1],[value-2],[value-3])
-        $data3=[];
+
         $db = DBConnectionFactory::getConnection();
-        upScore($data3);
+
+        upScore($points);
 
         return "CONGRATS! CHALLENGE COMPLETED!<br><br>Has aconsseguit $points punts dels 1.000 possibles";
 
