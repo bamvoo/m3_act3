@@ -39,56 +39,29 @@
 
         $classif_array = [];
 
-        $query = "SELECT * FROM results";
+        $query = "SELECT * FROM results ORDER BY punts DESC";
         $db=DBConnectionFactory::getConnection();
-        $classif_array = $db->executeQuery($query, $classif_array);
+        $classif_array[] = $db->executeQuery($query, $classif_array);
         echo '<table id="classificationTable">
                 <tr>
-                    <th>Hoy</th>
-                    <th>Mañana</th>
-                    <th>Miércoles</th>
+                    <th>actividad</th>
+                    <th>usuario</th>
+                    <th>puntuación</th>
                 </tr>
-';
+        ';
         foreach ($classif_array as $classif_arrays_row)
         {
-
+            echo '<tr>
+                    <td>'.$classif_arrays_row['codi_act'].'</td> 
+                    <td>'.$classif_arrays_row['codi_user'].'</td> 
+                    <td>'.$classif_arrays_row['punts'].'</td>
+                  </tr>';
         }
-
-
-//        echo '<table id="classificationTable">
-//
-//          <tr>
-//            <th>Hoy</th>
-//            <th>Mañana</th>
-//            <th>Miércoles</th>
-//          </tr>
-//          <tr>
-//            <td>Soleado</td>
-//            <td>Mayormente soleado</td>
-//            <td>Parcialmente nublado</td>
-//          </tr>
-//          <tr>
-//            <td>19°C</td>
-//            <td>17°C</td>
-//            <td>12°C</td>
-//          </tr>
-//          <tr>
-//            <td>E 13 km/h</td>
-//            <td>E 11 km/h</td>
-//            <td>S 16 km/h</td>
-//          </tr>
-//        </table>';
-
+        echo '</table>';
 
 
         ?>
 
-        <div id="formulario">
-            <form action = "" method="POST">
-                <input type="string" name="result" placeholder="Escriu el resultat"/>
-                <input type="submit" value="Comprobar" id="check_si" name="enviar"/>
-            </form>
-        </div>
     </article>
 </section>
 
