@@ -44,6 +44,8 @@
             $response = checkP($result_string);
         }
 
+        $_SESSION['actcodi'] = 2;
+
         $challenge = challenge();
 
         if (strpos($challenge, "CONGRATS!")===false) {

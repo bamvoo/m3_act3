@@ -182,10 +182,15 @@ function challenge(): string {
         //INSERT INTO `results`(`codi_act`, `codi_user`, `punts`) VALUES ([value-1],[value-2],[value-3])
 
         $codi_user = $_COOKIE['userid'];
-        $codi_act = $_COOKIE['actcodi'];
+        $codi_act = $_SESSION['actcodi'];
+//        var_dump($codi_act);
         $query = "insert into results (codi_act, codi_user, punts) VALUES ('".$codi_act."','".$codi_user."','".$points."')";
-        $db = DBConnectionFactory::getConnection();
-        $db->executeQuery($query);
+
+//        $datauser2 = [];
+//        $db = DBConnectionFactory::getConnection();
+//        $query2 = "select codi from activities where nom = 'fibonacci'";
+//        $db->executeQuery($query2, $datauser2);
+
 
         return "CONGRATS! CHALLENGE COMPLETED!<br><br>Has aconsseguit $points punts dels 1.000 possibles";
 

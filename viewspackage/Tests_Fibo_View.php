@@ -43,6 +43,9 @@
                         $result_string = (string) filter_input(INPUT_POST, 'result');
                         $response = checkF($result_string);
                     }
+
+                    $_SESSION['actcodi'] = 1;
+
                     $challenge = challenge();
 
                     if (strpos($challenge, "CONGRATS!")===false) {
