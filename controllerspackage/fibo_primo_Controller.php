@@ -183,8 +183,6 @@ function challenge(): string {
 
         $codi_user = $_COOKIE['userid'];
         $codi_act = $_SESSION['actcodi'];
-        var_dump($codi_act);
-        var_dump($codi_user);
         $query = "insert into results (codi_act, codi_user, punts) VALUES ('".$codi_act."','".$codi_user."','".$points."')";
         $db=DBConnectionFactory::getConnection();
         $db->executeQuery($query);

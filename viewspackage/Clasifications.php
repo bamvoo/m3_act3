@@ -35,26 +35,52 @@
         <?php
 
         include_once '../controllerspackage/fibo_primo_Controller.php';
-        $response = true;
-        print "<b>Indica seguido si 5 números son fibonacci o no con un -si- o un -no-<br></b>";
-        //comprueba el dato del check input
-        if (filter_input(INPUT_POST, 'result') != null) {
-            //mete en una variable lo que contiene el input result
-            $result_string = (string) filter_input(INPUT_POST, 'result');
-            $response = checkF($result_string);
-        }
-        $challenge = challenge();
+        include_once '../adapterspackage/MySQLAdapter.php';
 
-        if (strpos($challenge, "CONGRATS!")===false) {
-            if ($response == false){
-                print "<br><b>Resultat incorrecte.</b> Tornem a començar al nivell actual<br><br>";
-            }
-            print "<br>Nivell = " . gamelevel() . "<br>Encerts Seguits = " . numoperssuccess() . " (necesites = " . (3 - numoperssuccess()) . ")";
-            print "<br> Intent = " . attempts() . "<br><br>";
-            print "<b>Repte Actual: " . $challenge . "</b>";
-        } else {
-            print "<br><b>" . $challenge . "</b><br>";
+        $classif_array = [];
+
+        $query = "SELECT * FROM results";
+        $db=DBConnectionFactory::getConnection();
+        $classif_array = $db->executeQuery($query, $classif_array);
+        echo '<table id="classificationTable">
+                <tr>
+                    <th>Hoy</th>
+                    <th>Mañana</th>
+                    <th>Miércoles</th>
+                </tr>
+';
+        foreach ($classif_array as $classif_arrays_row)
+        {
+
         }
+
+
+//        echo '<table id="classificationTable">
+//
+//          <tr>
+//            <th>Hoy</th>
+//            <th>Mañana</th>
+//            <th>Miércoles</th>
+//          </tr>
+//          <tr>
+//            <td>Soleado</td>
+//            <td>Mayormente soleado</td>
+//            <td>Parcialmente nublado</td>
+//          </tr>
+//          <tr>
+//            <td>19°C</td>
+//            <td>17°C</td>
+//            <td>12°C</td>
+//          </tr>
+//          <tr>
+//            <td>E 13 km/h</td>
+//            <td>E 11 km/h</td>
+//            <td>S 16 km/h</td>
+//          </tr>
+//        </table>';
+
+
+
         ?>
 
         <div id="formulario">
