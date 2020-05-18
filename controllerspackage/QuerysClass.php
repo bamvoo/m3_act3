@@ -29,10 +29,9 @@ class QuerysClass
         $db2 = DBConnectionFactory::getConnection();
         $query2 = "select codi from activities where nom = 'fibonacci'";
         $db2->executeQuery($query2, $datauser2);
-        if(){
 
-        }
-        setcookie('actcodi', $datauser2[0]['codi'], 0, '/', 'localhost');
+        unset($_SESSION['actcodi']);
+        $_SESSION['actcodi'] = $datauser2[0]['codi'];
 
         return $query;
     }
@@ -45,7 +44,9 @@ class QuerysClass
         $db3 = DBConnectionFactory::getConnection();
         $query3 = "select codi from activities where nom = 'primers'";
         $db3->executeQuery($query3, $datauser3);
-        setcookie('actcodi', $datauser3[0]['codi'], 0, '/', 'localhost');
+
+        unset($_SESSION['actcodi']);
+        $_SESSION['actcodi'] = $datauser3[0]['codi'];
 
         return $query;
     }
