@@ -8,7 +8,7 @@ function tablaActivity(&$data){
 
     $db=DBConnectionFactory::getConnection();
 
-    $activity=new QuerysClass1($db);
+    $activity=new QuerysClass($db);
 
     $activity->selectActivities($data);
 
@@ -19,7 +19,7 @@ function lvlFibo(&$data){
 
     $db=DBConnectionFactory::getConnection();
 
-    $activity=new QuerysClass1($db);
+    $activity=new QuerysClass($db);
 
     $activity->selectLevelFibo($data);
 
@@ -30,7 +30,7 @@ function lvlPrimo(&$data2){
 
     $db=DBConnectionFactory::getConnection();
 
-    $activity=new QuerysClass1($db);
+    $activity=new QuerysClass($db);
 
     $activity->selectLevelPrimo($data2);
 

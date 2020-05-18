@@ -29,7 +29,6 @@ function challenge(): string {
     }
     $_SESSION['value1'] = rand(1, 11);
     $_SESSION['value2'] = rand(1, 11);
-    return ($_SESSION['value1'] . " " . $_SESSION['oper'] . " " . $_SESSION['value2']);
 }
 //si es correcto te lleva al siguiente level
 function check(int $result): bool {

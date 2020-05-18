@@ -6,14 +6,12 @@ include_once '../functions/math/BasicOperations.php';
 include_once '../adapterspackage/DBConnectionFactory.php';
 include_once 'UserDAO.php';
 include_once '../modelpackage/User.php';
-include "QuerysClass.php";
 
 function console_log( $data ){
     echo '<script>';
     echo 'console.log('. json_encode( $data ) .')';
     echo '</script>';
 }
-
 
 //pasar cosas de aquí a la vista
 
@@ -184,9 +182,10 @@ function challenge(): string {
         //INSERT INTO `results`(`codi_act`, `codi_user`, `punts`) VALUES ([value-1],[value-2],[value-3])
 
         $codi_user = $_COOKIE['userid'];
-        $db=DBConnectionFactory::getConnection();
-        $activity=new QuerysClass1($db);
-        $activity->insertLogros($points, $codi_user);
+        $codi_act = $_COOKIE['actcodi'];
+        $query = "insert into results (codi_act, codi_user, punts) VALUES ('".$codi_act."','".$codi_user."','".$points."')";
+        $db = DBConnectionFactory::getConnection();
+        $db->executeQuery($query);
 
         return "CONGRATS! CHALLENGE COMPLETED!<br><br>Has aconsseguit $points punts dels 1.000 possibles";
 
@@ -231,7 +230,7 @@ function challenge(): string {
 function initchallenge() {
     $_SESSION['initialized'] = 1;
     $_SESSION['gamelevel'] = 1;
-    //    $_SESSION['fibo&primo'] = 0;
+    $_SESSION['oper'] = "+";
     $_SESSION['attempts'] = 0;
     $_SESSION['numoperssuccess'] = 0;
     $_SESSION['challengecompleted'] = 0;

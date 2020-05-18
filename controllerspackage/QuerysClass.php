@@ -4,7 +4,7 @@ declare(strict_types=1);
 include_once '../adapterspackage/MySQLAdapter.php';
 include_once 'LevelController.php';
 
-class QuerysClass1
+class QuerysClass
 {
 
     public function __construct(MySQLAdapter $db) {
@@ -29,6 +29,9 @@ class QuerysClass1
         $db2 = DBConnectionFactory::getConnection();
         $query2 = "select codi from activities where nom = 'fibonacci'";
         $db2->executeQuery($query2, $datauser2);
+        if(){
+
+        }
         setcookie('actcodi', $datauser2[0]['codi'], 0, '/', 'localhost');
 
         return $query;
@@ -47,15 +50,15 @@ class QuerysClass1
         return $query;
     }
 
-    public function insertLogros(int $punts, int $codi_user){
-
-
-        $codi_act = $_COOKIE['actcodi'];
-
-        $query = "insert into results (codi_act, codi_user, punts) VALUES ('".$codi_act."','".$codi_user."','".$punts."')";
-        $this->db->executeQuery($query, $data3);
-
-        return $query;
-    }
+//    public function insertLogros(int $punts, int $codi_user){
+//
+//
+//        $codi_act = $_COOKIE['actcodi'];
+//
+//        $query = "insert into results (codi_act, codi_user, punts) VALUES ('".$codi_act."','".$codi_user."','".$punts."')";
+//        $this->db->executeQuery($query, $data3);
+//
+//        return $query;
+//    }
 
 }
